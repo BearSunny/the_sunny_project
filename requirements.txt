@@ -1,0 +1,24 @@
+# Sunny - Research Assistant
+# Requirements for Phase 1 MVP
+
+# Core dependencies
+google-generativeai>=0.3.0
+python-dotenv>=1.0.0
+
+# Voice interaction
+requests>=2.31.0
+SpeechRecognition>=3.10.0
+gtts>=2.3.0
+pygame>=2.1.0
+
+# Screen capture and monitoring
+Pillow>=10.0.0
+pygetwindow>=0.0.9
+
+# VS Code automation and keyboard/mouse control
+pyperclip>=1.8.2
+keyboard>=0.13.5
+pyautogui>=0.9.53
+
+# Database
+# sqlite3 is built into Python
