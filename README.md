@@ -241,61 +241,15 @@ These tools are exposed to Gemini's function-calling API with detailed descripti
 
 ## Challenges We Ran Into
 
-1. **API Availability Constraints** - Some planned Gemini features (Live API WebSocket, Computer Use tool, Deep Research) were not yet available during development. Solution: Built flexible abstractions with placeholder implementations ready for upgrading when APIs release.
+1. **Screenshot-to-Text Accuracy** - Initial vision model results had difficulty extracting code from PDFs with complex formatting. Solution: Implemented multi-pass analysis with error correction prompts.
 
-2. **Screenshot-to-Text Accuracy** - Initial vision model results had difficulty extracting code from PDFs with complex formatting. Solution: Implemented multi-pass analysis with error correction prompts.
+2. **Code Execution Error Recovery** - Extracted code often failed due to missing imports or environment assumptions. Solution: Built auto-retry logic that prompts Gemini to fix and re-run code autonomously.
 
-3. **Code Execution Error Recovery** - Extracted code often failed due to missing imports or environment assumptions. Solution: Built auto-retry logic that prompts Gemini to fix and re-run code autonomously.
+3. **Quota Management** - Balancing free-tier API limits while providing responsive user experience. Solution: Implemented intelligent quota tracking and Safety buffers with predictive warnings.
 
-4. **Quota Management** - Balancing free-tier API limits (15 req/min Flash, 2 req/min Pro) while providing responsive user experience. Solution: Implemented intelligent quota tracking and Safety buffers with predictive warnings.
+4. **Synchronous Voice + Asynchronous Processing** - Managing real-time voice interaction while running background experiments. Solution: Used queue-based threading architecture with completion callbacks.
 
-5. **Synchronous Voice + Asynchronous Processing** - Managing real-time voice interaction while running background experiments. Solution: Used queue-based threading architecture with completion callbacks.
-
-6. **Context Accuracy** - Screen monitoring must distinguish between multiple papers and tabs. Solution: Window title tracking and visual content hashing for reliable context detection.
-
-## Accomplishments We're Proud Of
-
-✨ **End-to-End Voice Research Workflow** - Users can analyze papers, critique methodologies, run experiments, and verify claims entirely through voice—truly hands-free research.
-
-✨ **Autonomous Error Recovery** - The code executor doesn't just fail gracefully; it analyzes errors and asks Gemini to fix code automatically with retry logic and exponential backoff.
-
-✨ **Intelligent Quota Optimization** - Achieved ~730 Flash calls/day for screen monitoring while keeping Pro reserved for deep tasks—maximizing free tier without paying.
-
-✨ **Real-Time Screen Context** - The vision engine tracks open papers without explicit user input, automatically switching context as users navigate research.
-
-✨ **Scalable Database Design** - SQLite schema tracks papers, notes, experiments, and relationships, enabling future analytics and visualization features.
-
-✨ **Production-Ready Error Handling** - Comprehensive exception handling for API rate limits, server errors, and invalid requests with graceful degradation.
-
-## What We Learned
-
-📚 **Gemini's Strength in Multi-Modal Understanding** - Vision + function calling + code execution creates possibilities beyond traditional language models. The combination enables reasoning about visual content and taking autonomous actions.
-
-📚 **Importance of Quota Strategy** - Free APIs require careful management. Understanding request costs and implementing tiered accuracy (Flash for monitoring, Pro for analysis) allows sustainable free-tier usage.
-
-📚 **Users Love Voice Interfaces** - Building hands-free workflows removes friction from research. Users preferred voice commands to typing, suggesting significant potential for conversational research tools.
-
-📚 **Autonomous Agents Need Guardrails** - Allowing models to execute code and retry requires careful error boundaries, resource limits, and logging. Safety isn't an afterthought—it's essential from day one.
-
-📚 **Context Windows Matter** - Screenshots provide crucial grounding for accurate responses. Visual context + text prompt + tool definitions creates more reliable function calling than LLMs alone.
-
-## What's Next for Sunny
-
-🚀 **Gemini Live API Integration** - Implement WebSocket-based streaming for lower-latency voice interaction and smoother conversational flow.
-
-🚀 **Computer Use Tool Support** - Directly automate paper navigation, figure extraction, and experiment setup when Gemini's computer-use APIs become available.
-
-🚀 **Deep Research Agent** - Implement multi-step research orchestration using Gemini's Deep Research APIs to verify claims across multiple papers automatically.
-
-🚀 **Phase 2 Web Dashboard** - Build Streamlit interface for browsing analyzed papers, viewing experiment results, managing notes, and exporting findings as reports.
-
-🚀 **GPU-Accelerated Code Execution** - Enable execution of computationally expensive experiments with GPU support for machine learning and scientific computing.
-
-🚀 **Multi-Language & Format Support** - Extend vision engine to handle papers in multiple languages, preprints, and alternative formats.
-
-🚀 **Collaborative Research Features** - Add team sharing, annotation synchronization, and group experiment workflows for collaborative research groups.
-
-🚀 **Enhanced Paper Relationship Mapping** - Visualize citation networks and automatically identify contradicting research, building the knowledge graph Phase 2 envisioned.
+5. **Context Accuracy** - Screen monitoring must distinguish between multiple papers and tabs. Solution: Window title tracking and visual content hashing for reliable context detection.
 
 ## License
 
